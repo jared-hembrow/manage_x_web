@@ -1,20 +1,11 @@
 'use client'
-import { AuthActionTypes, GlobalStateContext } from '@/context'
 import React, { useContext } from 'react'
+import NavbarUser from './NavbarUser'
 
 type Props = {}
 
 const Navbar = (props: Props) => {
-  const {dispatch} = useContext(GlobalStateContext) 
-  const openLogin = () => {
-    console.log("open")
-    dispatch({
-      type: AuthActionTypes.SET_AUTH_MODAL_OPEN,
-      payload: {
-        open: true
-      }
-    })
-  }
+  
   return (
     <nav className="navbar navbar-expand-lg bg-body-secondary">
   <div className="container-fluid">
@@ -45,12 +36,8 @@ const Navbar = (props: Props) => {
           <a className="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
       </ul>
-      <div className='d-flex'>
-        <div onClick={openLogin}>
-
-        login
-        </div>
-      </div>
+      <NavbarUser />
+      
       {/* <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button className="btn btn-outline-success" type="submit">Search</button>

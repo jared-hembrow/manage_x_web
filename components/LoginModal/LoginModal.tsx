@@ -2,7 +2,7 @@ import React, { FC, useContext, useState } from 'react'
 import { Modal } from '..'
 import { AuthActionTypes, GlobalStateContext } from '@/context'
 import axios from 'axios'
-
+import * as jwt from "jsonwebtoken"
 
 const LoginModal: FC = () => {
     const {state: {
@@ -42,10 +42,19 @@ const LoginModal: FC = () => {
     })
     if (res.status === 200){
         if (res.data.token){
-            const token = res.data.token
+          const token = res.data.token
+          localStorage.setItem("manage_x_token", token)
+          const user = jwt.decode(token)
+          dispatch({
+            type: AuthActionTypes.SET_USER,
+            payload: user
+          })
+          dispatch({
+            type: AuthActionTypes.SET_AUTH_MODAL_OPEN,
+            payload: {open:false}
+          })
+         
         }
-        console.log(res.data)
-    
     }
 
 

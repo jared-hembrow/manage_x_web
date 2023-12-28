@@ -1,5 +1,5 @@
 // TYPES
-export type {Action} from "./contextTypes.d"
+export type {Action, User} from "./contextTypes.d"
 export {default as Providers} from "./Providers"
 
 // Reducers
